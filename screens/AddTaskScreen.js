@@ -60,6 +60,9 @@ useEffect(() => {
     setErrorMessage('');
 
     }
+ function handleDeleteTask(id) {
+  setTasks(tasks.filter((t) => t.id !== id));
+ }
  function handleToggleTask(id) {
     setTasks(
     tasks.map((t) =>
@@ -102,15 +105,14 @@ useEffect(() => {
 <FlatList
  data={tasks}
  keyExtractor={(item) => item.id}
- renderItem={({ item }) => (
-    <TaskCard
-    title={item.title}
-    done={item.done}
-
-    onToggle={() => handleToggleTask(item.id)}
-
-    />
- )}
+renderItem={({ item }) => (
+ <TaskCard
+ title={item.title}
+ done={item.done}
+ onToggle={() => handleToggleTask(item.id)}
+ onDelete={() => handleDeleteTask(item.id)}
+ />
+)}
  
  ListEmptyComponent={
 
